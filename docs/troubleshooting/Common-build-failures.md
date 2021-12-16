@@ -50,3 +50,27 @@ Clean the generated source code first with:
 ```
 make clean
 ```
+
+
+
+## Build fails with undefined: rocksdb...
+### Symptom
+When running make `cli-build` (or another target with CGO_ENABLED=0) on your branch errors such as the following are printed, but master still builds fine and you did not touch the `pkg/rocksdb` package at all:
+```
+~/go/src/github.com/stackrox/rox $ make cli-build
+mkdir -p bin/{darwin,linux,windows}
+RACE=0 CGO_ENABLED=0 GOOS=darwin /Users/marcin/go/src/github.com/stackrox/rox/scripts/go-build.sh ./roxctl
+Compiling Go source in ./roxctl to bin/darwin/roxctl
+# github.com/stackrox/rox/pkg/rocksdb
+pkg/rocksdb/rocksdb.go:22:2: undefined: gorocksdb.DB
+pkg/rocksdb/rocksdb.go:90:13: undefined: gorocksdb.OpenDb
+pkg/rocksdb/rocksdb.go:101:27: undefined: gorocksdb.Options
+pkg/rocksdb/rocksdb.go:102:10: undefined: gorocksdb.NewDefaultOptions
+pkg/rocksdb/rocksdb.go:104:22: undefined: gorocksdb.LZ4Compression
+make: *** [cli-build] Error 2
+```
+This is because you (intentionally or not) introduced a (probably indirect) dependency from the roxctl code to the pkg/rocksdb package.
+
+### Solution
+
+Restructure your code to remove the dependency. Comparing the output of go `list -deps ./roxctl` between your branch and master might provide some hints.

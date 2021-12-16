@@ -3,7 +3,7 @@ This guide is tailored towards RHEL, but should work on other distros as well.
 You might need to 
 
 ## Change default shell to bash(Optional)
-The latest Macbook comes with zsh as default shell. You may change it to bash if you would like to.
+The directions here are given for a bash shell. If you are using a Red Hat laptop the default shell should be bash. If it is not and you want to change it to bash you can do the following step.  
 
 1. Launch the Terminal app
 2. Change default shell to bash  
@@ -58,7 +58,6 @@ The latest Macbook comes with zsh as default shell. You may change it to bash if
     ```
     (...)
     Hello from Docker!
-    This message shows that your installation appears to be working correctly.
     (...)
     ```
 
@@ -79,7 +78,7 @@ The steps are also given below:
     systemctl status firewalld
     ```
 
-2. Create a file at /etc/yum.repos.d with the following contents
+2. Create a file at `/etc/yum.repos.d` with the following contents
     ```ini
     [kubernetes]
     name=Kubernetes
@@ -100,7 +99,7 @@ The steps are also given below:
 
 
 ## Install Go
-1. Please see [here](https://github.com/stackrox/rox/blob/master/EXPECTED_GO_VERSION) for the latest version used at StackRox that you should download.  
+1. Please see [here](https://github.com/stackrox/stackrox/blob/master/EXPECTED_GO_VERSION) for the latest version used at StackRox that you should download.  
 Follow the directions [here](https://golang.org/doc/install) to install Go.
 
 ### Verify
@@ -126,14 +125,10 @@ Follow the directions [here](https://golang.org/doc/install) to install Go.
 
 ## Install RocksDB
 
-1. Download & install rocksdb v6.15.4 
+1. Download & install rocksdb v6.15.4: [GitHub Release Page](https://github.com/facebook/rocksdb/releases/tag/v6.15.4)
     ```
-    wget https://github.com/facebook/rocksdb/archive/refs/tags/v6.15.4.zip
-    unzip v6.15.4.zip && cd v6.15.4.zip
-    sudo make shared_lib
-    sudo make install-shared
-    sudo make static_lib
-    sudo make install-static
+    make shared_lib static_lib
+    sudo make install-shared install-static
     CGO_CFLAGS="-I/usr/local/include" CGO_LDFLAGS="-L/usr/local/lib/librocksdb.a"   go get github.com/tecbot/gorocksdb
     ```
 
@@ -161,7 +156,7 @@ Follow the directions [here](https://golang.org/doc/install) to install Go.
     ```
 
 
-## Install bats (optional)
+## Install bats
 [This](https://centos.pkgs.org/7/epel-x86_64/bats-0.4.0-1.20141016git3b33a5a.el7.noarch.rpm.html) is a helpful resource  
 
     ```

@@ -210,9 +210,9 @@ $ brew install stackrox/rocksdb/rocksdb@6.15.5
 
 
 ## Install Helm
-    ```
-    $ brew install helm
-    ```
+```
+$ brew install helm
+```
 
 ### Verify
 

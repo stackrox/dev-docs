@@ -145,6 +145,12 @@ Currently we require v6.15.5 of rocksdb. The tl;dr is that the cgo library we us
 git clone https://github.com/facebook/rocksdb.git
 cd rocksdb
 git checkout v6.15.5
+
+# Now install the required dependencies
+brew install snappy
+brew install lz4
+brew install zstd
+
 make shared_lib
 make install-shared
 ```
@@ -158,11 +164,11 @@ git clone https://github.com/facebook/rocksdb.git
 cd rocksdb
 git checkout v6.15.5
 
-Now install the required dependencies
+# Now install the required dependencies
 brew install snappy
 brew install lz4
 brew install zstd
- 
+
 # as described in the homebrew section, symlink dylib over to /usr/local/lib
 sudo ln -sfn $(brew --prefix)/lib/libsnappy.dylib /usr/local/lib
 sudo ln -sfn $(brew --prefix)/lib/liblz4.dylib /usr/local/lib

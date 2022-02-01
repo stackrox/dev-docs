@@ -197,9 +197,9 @@ lrwxr-xr-x    1 ross  admin       23 Apr 21 22:51 librocksdb.dylib -> librocksdb
 
 ### (Optional but recommended)
 
-After you have cloned and setup the StackRox repo, try running a test that depends on rocksdb:
-cd $GOPATH/src/github.com/stackrox/rox
+After you have cloned and setup the StackRox repo, try running a test that depends on rocksdb:  
 ```
+cd $GOPATH/src/github.com/stackrox/stackrox
 # runs an arbitrary test that depends on rocksdb. -count=1 forces it to not use cached results
 go test github.com/stackrox/rox/central/vulnerabilityrequest/manager -count=1
  

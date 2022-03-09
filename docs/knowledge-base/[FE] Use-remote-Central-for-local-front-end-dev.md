@@ -52,7 +52,10 @@ that is already running, you can use one of the following, depending on
 whether it has a public IP. 
 
 -   If it has a public IP, export that in the `YARN_START_TARGET` env var and start 
-    the front-end by running `export YARN_START_TARGET=<external_IP>; yarn start`
+    the front-end by running `export YARN_START_TARGET=<external_IP>; yarn start`.
+    Note that you may also want to run `export UI_BASE_URL=<external_IP>;` for commands
+    that assume the backend will be available on localhost:8000 (such as `yarn cypress-open`).
+
 
 -   If it does not have a public IP or a demo URL, you can use steps 2
     and 4 from the section above, **Using Remote StackRox Deployment**.

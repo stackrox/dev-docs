@@ -1,5 +1,5 @@
 # Enable Hot Reload
-When working on `scanner` or `central` locally, you can minimize the time needed for redeployments.
+When working on `sensor` or `central` locally, you can minimize the time needed for redeployments.
 
 ```bash
 make image  # or use a CI built image

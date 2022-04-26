@@ -13,7 +13,7 @@ export STORAGE=pvc
 # then, enable hot reload for either central
 ./dev-tools/enable-hotreload.sh central
 # ... or for sensor
-./dev-tools/enable-hotreload.sh
+./dev-tools/enable-hotreload.sh sensor
 ```
 
 This script will mount the compiled binary directly into the corresponding pod, technically enabling hot reloads.

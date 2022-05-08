@@ -127,6 +127,9 @@ Follow the directions [here](https://golang.org/doc/install) to install Go.
 
 1. Download & install rocksdb v6.15.4: [GitHub Release Page](https://github.com/facebook/rocksdb/releases/tag/v6.15.4)
     ```
+    wget https://github.com/facebook/rocksdb/archive/refs/tags/v6.15.4.tar.gz
+    tar -xvf v6.15.4.tar.gz
+    cd rocksdb-6.15.4/
     make shared_lib static_lib
     sudo make install-shared install-static
     CGO_CFLAGS="-I/usr/local/include" CGO_LDFLAGS="-L/usr/local/lib/librocksdb.a"   go get github.com/tecbot/gorocksdb

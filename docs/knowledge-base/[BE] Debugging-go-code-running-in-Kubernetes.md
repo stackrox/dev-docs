@@ -11,7 +11,7 @@ tested.
 ## Instructions
 
 Main instructions are available here:
-<https://github.com/stackrox/rox#debugging>
+<https://github.com/stackrox/stackrox#debugging>
 
 If you’re using GoLand, get familiar with its
 <a href="https://www.jetbrains.com/help/go/debugging-code.html" class="external-link">features</a>
@@ -32,7 +32,7 @@ available for debugging.
 2.  **Connect to remote debugger**  
     Make sure remote debugger is launched/attached and port forwarding
     is enabled. See corresponding
-    <a href="https://github.com/stackrox/rox#debugging" class="external-link">section in README.md</a>.  
+    <a href="https://github.com/stackrox/stackrox#debugging" class="external-link">section in README.md</a>.  
     Next, select `Run | Debug…` and select Go Remote configuration
     you’ve created.
 
@@ -59,50 +59,42 @@ available for debugging.
 
 ## Caveats / what to expect / troubleshooting
 
--   Update your GoLand.
+- Update your GoLand.
     <a href="https://www.jetbrains.com/toolbox-app/" class="external-link">JetBrains Toolbox</a>
-    is a good tool for this. The tooling is relatively new and stability
-    fixes usually come with new IDE releases.
+    is a good tool for this. The GoLand support for debugging is
+    relatively new and stability fixes usually come with new IDE
+    releases.
 
--   After you disconnect GoLand (or it gets disconnected because of
+- After you disconnect GoLand (or it gets disconnected because of
     process crash, etc.) and then reconnect, sometimes it happens that
     GoLand does not stop on breakpoints even though you know it must. I
     wasn’t able to trace the origin, but here’s what may help:
 
     -   Restart GoLand via
-        `File | Invalidate Caches / Restart… | Just Restart`.
+        `File | Invalidate Caches… | Just Restart`.
 
--   Occasionally, when stepping through, the debugged process crashes
+- Occasionally, when stepping through, the debugged process crashes
     (with abort signal in logs) and GoLand shows a dialog what to do
     when disconnecting from it. If that happens, you’ll need to delete
-    the pod so that a process starts again.  
+    the pod so that the process can be started again.  
     This happens when you run into a section protected by `mutex_dev`
     and spend there more than 5 seconds, see
-    <https://github.com/stackrox/rox/blob/master/pkg/sync/mutex_dev.go#L55>.
-    You may want to override `MUTEX_WATCHDOG_TIMEOUT_SECS` environment
-    variable or temporarily comment-out `kill()` line.
+    <https://github.com/stackrox/stackrox/blob/master/pkg/sync/mutex_dev.go>.
+    You may want to override `MUTEX_WATCHDOG_TIMEOUT_SECS=0`
+    environment variable on debugged deployment (or temporarily
+    comment-out `kill()` line) to prevent pods from getting killed.
 
--   Breakpoints suspend execution of all goroutines and so pod lifecycle
+- Breakpoints suspend execution of all goroutines and so pod lifecycle
     probes might fail if the execution is suspended for too long. Make
     sure you’re familiar with effects of failing probes -
     <https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes>
     and you know which probes are configured for the pod you’re
     debugging.
 
--   If the Central pod crashed and restarted, you’ll have to
+- If the Central pod crashed and restarted, you’ll have to
     re-establish port forward to be able to reach StackRox UI and/or
     back-end. Use
     `kubectl -n stackrox  port-forward svc/central 8000:443 &` for this.
-
--   If you launch the process wrapped in `dlv exec` as described below,
-    for some reason pods can’t start from the first attempt after you
-    deploy. Once the deployment finishes, they terminate and then start
-    anew and then you can debug them. Such behavior causes some
-    end-to-end tests fail during CI, in particular the ones that expect
-    central to be up after deployment or central to run without
-    restarts.
-
-
 
 ## References
 

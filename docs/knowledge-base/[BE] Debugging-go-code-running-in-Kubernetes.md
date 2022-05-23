@@ -61,16 +61,16 @@ available for debugging.
 
 - Update your GoLand.
     <a href="https://www.jetbrains.com/toolbox-app/" class="external-link">JetBrains Toolbox</a>
-    is a good tool for this. The GoLand support for debugging is
-    relatively new and stability fixes usually come with new IDE
+    is a good tool for this. GoLand's support for debugging is
+    relatively new, and stability fixes usually come with new IDE
     releases.
 
 - After you disconnect GoLand (or it gets disconnected because of
-    process crash, etc.) and then reconnect, sometimes it happens that
-    GoLand does not stop on breakpoints even though you know it must. I
-    wasn’t able to trace the origin, but here’s what may help:
+    a process crash, etc.) and then reconnect, sometimes it happens
+    that GoLand does not stop on breakpoints even though you know it
+    must. I wasn’t able to trace the origin, but here’s what may help:
 
-    -   Restart GoLand via
+    - Restart GoLand via
         `File | Invalidate Caches… | Just Restart`.
 
 - Occasionally, when stepping through, the debugged process crashes

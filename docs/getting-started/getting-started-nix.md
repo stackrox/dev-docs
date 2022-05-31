@@ -7,9 +7,13 @@ to provide declarative and reproducible build environments.
 
 [Stackrox-env](https://github.com/stackrox/stackrox-env) provides a development environment,
 which includes all necessary tools to contribute to the [Stackrox project](https://github.com/stackrox/stackrox) regardless
-of whether Linux or macOS is the underlying operatating system. This approach represents an
-alternative to the imperative approaches outlined in the [Linux](getting-started-linux.md) and [macOS](getting-started-darwin.md)
-guides.
+of whether Linux or macOS is the underlying operating system. This approach represents an
+alternative to the imperative approaches outlined in the [Linux](getting-started-linux.md) and [macOS](getting-started-darwin.md) guides.
+The `Nix` environment provides the following advantages over the conventional setup:
+* `infrastructure-as-code`: Changes to the environment are tracked by git and must pass a continuous integration pipeline.
+* A `git pull` is sufficient to keep the environment in sync.
+* The `Nix store` hermetically stores binaries, libraries and all dependencies. No pollution on a system level.
+* Rollbacks become trivial by reverting to an older git revision.
 
 ## Install Nix
 

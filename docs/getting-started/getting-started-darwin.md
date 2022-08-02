@@ -97,7 +97,7 @@ If you find a better way of dealing with this, please update this section.
 1. Launch the Terminal app found in /Applications/Utilities. 
 2. Run the commands to install productivity tools like this:  
     ```
-    $ brew install jq bash-completion wget
+    $ brew install jq bash-completion wget coreutils
     ```
 3. Add bash completion to your `~/.bash_profile`: (if you're setting up a new computer, it's likely it won't exist, so create a new file)
     ```bash

@@ -5,8 +5,7 @@ on:
 
 env:
   EXTERNAL_PR_LABEL: external-contributor
-  PROJECT_URL: https://github.com/orgs/stackrox/projects/3 # Test board for PR automation
-  # PROJECT_URL: https://github.com/orgs/stackrox/projects/2 # OSS Triaging board
+  PROJECT_URL: https://github.com/orgs/stackrox/projects/2 # OSS Triaging board
 
 jobs:
   check-pr-if-external:

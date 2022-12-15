@@ -181,9 +181,15 @@ Compile and install the rocksdb library
 curl -L https://github.com/facebook/rocksdb/pull/7714.patch | git apply -
  
 CFLAGS="-I$(brew --prefix)/include" LDFLAGS="-L$(brew --prefix)/lib" make shared_lib
+
+# if the above doesn't work you may have to allow a few warnings by
+# CXXFLAGS="-Wno-error=deprecated-copy -Wno-error=unused-but-set-variable"
+
 make install-shared
 # if the above doesn't work run install-shared with sudo
 ```
+
+
 
 ### Verify
 If this worked (Intel or M1) properly, you'll see something like the following:

@@ -5,7 +5,6 @@ on:
 
 env:
   EXTERNAL_PR_LABEL: external-contributor
-  PROJECT_URL: https://github.com/orgs/stackrox/projects/2 # OSS Triaging board
 
 jobs:
   check-pr-if-external:
@@ -24,21 +23,7 @@ jobs:
         run: |
           set -uo pipefail
           if [[ $BASE_REPO != $HEAD_REPO ]]; then
-            echo "::set-output name=is_external_pr::true"
             gh pr edit \
               ${{ github.event.pull_request.number }} \
               --add-label ${EXTERNAL_PR_LABEL}
-          else
-            echo "::set-output name=is_external_pr::false"
           fi
-
-  add-to-project:
-    name: Add pull request to project
-    runs-on: ubuntu-latest
-    needs: [check-pr-if-external]
-    if: needs.check-pr-if-external.outputs.is_external_pr == 'true'
-    steps:
-      - uses: actions/add-to-project@v0.3.0
-        with:
-          project-url: ${{ env.PROJECT_URL }}
-          github-token: ${{ secrets.ADD_TO_PROJECT_TOKEN }}

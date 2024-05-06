@@ -164,6 +164,9 @@ git clone https://github.com/facebook/rocksdb.git
 cd rocksdb
 git checkout v6.15.5
 
+# Apply the RocksDB patch in this repo to support newer versions of gcc
+git apply rocksdb.patch
+
 # Now install the required dependencies
 brew install snappy
 brew install lz4
